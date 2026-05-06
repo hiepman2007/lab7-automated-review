@@ -1,6 +1,6 @@
-public class Main {
-  public static void main(String[] args) {
-    int x=10+5; // Lỗi: Thiếu khoảng trắng quanh dấu = và + dsad asd a dá d
-    System.out.println("Test dsadsadsadsabot");
+public class Main{
+  public static void main(String[] args){
+    int x=10+5; // Không có khoảng trắng nào
+    System.out.println("Re-testing bot");
   }
 }
