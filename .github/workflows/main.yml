@@ -1,0 +1,28 @@
+name: Automated Code Review
+
+# 1. Trigger: Tự động chạy khi có Pull Request hướng vào nhánh main
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  checkstyle:
+    name: Checkstyle Review
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write # Cấp quyền cho bot để đăng bình luận
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. Inline Feedback: Tích hợp action để review trực tiếp trên code
+      - name: Run Checkstyle and Review
+        uses: dbelyaev/action-checkstyle@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          level: 'error' # Bot sẽ báo lỗi nếu vi phạm chuẩn
+          # Bạn có thể chỉ định file config nếu có:
+          # checkstyle_config: google_checks.xml
